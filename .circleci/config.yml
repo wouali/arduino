@@ -3,12 +3,25 @@ jobs:
   build:
     docker:
       - image: debian:stretch
+    environment:
+      - ARDUINO_DIR: "/usr/share/arduino"
+      - ARDMK_DIR: "/usr/share/arduino"
+      - AVR_TOOLS_DIR: "/usr"
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Recherche des dépendances
+          command: apt-get update && apt-get -y install arduino-mk arduino-core gcc-avr avr-libc avrdude
       - run:
-          name: Print the Current Time
-          command: date
-
+          name: Génération du Makefile
+          command: >
+              echo -e "
+              CXXFLAGS_STD = -std=c++14\n
+              BOARD_TAG    = uno\n
+              ARDUINO_PORT = /dev/cu.usb*\n
+              ARDUINO_LIBS = Ethernet Ethernet/utility SPI\n
+              include /usr/share/arduino/Arduino.mk\n
+              " > Makefile
+      - run:
+          name: Compilation du code Arduino
+          command: make
