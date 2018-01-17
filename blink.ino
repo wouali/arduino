@@ -16,6 +16,8 @@
   by Arturo Guadalupi
   modified 8 Sep 2016
   by Colby Newman
+  modified 17 Jan 2018
+  by Antoine Tran Tan
 
   This example code is in the public domain.
 
