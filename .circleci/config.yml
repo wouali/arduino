@@ -12,12 +12,12 @@ jobs:
       - run:
           name: Recherche des dépendances
           command: >
-		      apt-get update && apt-get -y install 
-			  arduino-mk 
-			  arduino-core 
-			  gcc-avr 
-			  avr-libc 
-			  avrdude
+              apt-get update && apt-get -y install 
+              arduino-mk 
+              arduino-core 
+              gcc-avr 
+              avr-libc 
+              avrdude
               libboost-tools-dev
 
       - run:
