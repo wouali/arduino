@@ -11,7 +11,15 @@ jobs:
       - checkout
       - run:
           name: Recherche des dépendances
-          command: apt-get update && apt-get -y install arduino-mk arduino-core gcc-avr avr-libc avrdude
+          command: >
+		      apt-get update && apt-get -y install 
+			  arduino-mk 
+			  arduino-core 
+			  gcc-avr 
+			  avr-libc 
+			  avrdude
+              libboost-tools-dev
+
       - run:
           name: Génération du Makefile
           command: >
@@ -25,3 +33,13 @@ jobs:
       - run:
           name: Compilation du code Arduino
           command: make
+
+      - run:
+          name: Inspection du code Arduino
+          command: >
+            mkdir inspect_dir &&
+            cp `ls source/*.ino` `ls source/*.cpp` `ls include/*.hpp` inspect_dir/. &&
+            inspect inspect_dir
+            -copyright -crlf -end -link -path_name -tab -ascii -apple_macro
+            -assert_macro -deprecated_macro -minmax -unnamed
+            > inspect_report.html
