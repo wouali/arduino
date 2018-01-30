@@ -27,7 +27,7 @@ jobs:
               CXXFLAGS_STD = -std=c++14\n
               BOARD_TAG    = uno\n
               ARDUINO_PORT = /dev/cu.usb*\n
-              ARDUINO_LIBS = Ethernet Ethernet/utility SPI\n
+              ARDUINO_LIBS = Ethernet Ethernet/utility Servo SPI\n
               include /usr/share/arduino/Arduino.mk\n
               " > Makefile
       - run:
