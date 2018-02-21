@@ -47,3 +47,7 @@ jobs:
             -copyright -crlf -end -link -path_name -tab -ascii -apple_macro
             -assert_macro -deprecated_macro -minmax -unnamed
             > inspect_report.html
+
+      - store_artifacts:
+          path: inspect_report.html
+          destination: artefact
